@@ -149,17 +149,17 @@
 
         <div class="pokemon-grid">
             @foreach($pokemons as $index => $poke)
-            <a href="/pokemon/{{ $poke['name'] }}" class="pokemon-card" style="animation-delay: {{ $index * 0.04 }}s">
-                <span class="card-number">#{{ str_pad($poke['id'], 3, '0', STR_PAD_LEFT) }}</span>
-                @if($poke['sprite'])
-                    <img src="{{ $poke['sprite'] }}" alt="{{ $poke['name'] }}" class="card-sprite" loading="lazy">
+            <a href="/pokemon/{{ $poke->name }}" class="pokemon-card" ...>
+                <span class="card-number">#{{ str_pad($poke->pokedex_id, 3, '0', STR_PAD_LEFT) }}</span>
+                @if($poke->sprite)
+                    <img src="{{ $poke->sprite }}" alt="{{ $poke->name }}" class="card-sprite" loading="lazy">
                 @else
-                    <div class="card-sprite-placeholder">{{ mb_strtoupper(mb_substr($poke['name'], 0, 1)) }}</div>
+                    <div class="card-sprite-placeholder">{{ mb_strtoupper(mb_substr($poke->name, 0, 1)) }}</div>
                 @endif
-                <span class="card-name">{{ $poke['name'] }}</span>
+                <span class="card-name">{{ $poke->name_es ?? $poke->name }}</span>
                 <div class="card-types">
-                    @foreach($poke['types'] as $t)
-                        <span class="type-chip type-{{ $t }}">{{ ucfirst($t) }}</span>
+                    @foreach($poke->types as $t)
+                        <span class="type-chip type-{{ $t->type }}">{{ ucfirst($t->type) }}</span>
                     @endforeach
                 </div>
                 <span class="card-btn">Ver →</span>
